@@ -46,15 +46,16 @@ class RepositoryListViewModelTests: XCTestCase {
         let validServerURL = "https://api.bitbucket.org/2.0/repositories"
         let sut = self.initiliseRepository(for: validServerURL)
         //When
-        let exp = expectation(for: NSPredicate(block:{( _, _) -> Bool in
-            return sut.repositoryList!.count > 0
-        }), evaluatedWith: sut, handler: nil)
-        
         sut.loadRepository { statusCode, error in
             //Then
             XCTAssertEqual(statusCode,ResponseCodes.success)
             XCTAssertEqual(error!.message,"no error")
         }
+        let exp = expectation(for: NSPredicate(block:{( _, _) -> Bool in
+            return sut.repositoryList!.count > 0
+        }), evaluatedWith: sut, handler: nil)
+        
+        
         wait(for: [exp], timeout: 10)
     }
 }
