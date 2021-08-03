@@ -1,0 +1,4 @@
+{
+  "server" : "https://api.bitbucket.org/2.0/repositories",
+  "debug" : true,
+}
