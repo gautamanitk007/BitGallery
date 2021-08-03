@@ -30,7 +30,7 @@ class RepositoryListViewModelTests: XCTestCase {
         let sut = self.initiliseRepository(for: badServerURL)
         //When
         let exp = expectation(for: NSPredicate(block:{( _, _) -> Bool in
-            return sut.api.server.count > 0
+            return sut.repositoryList!.count == 0
         }), evaluatedWith: sut, handler: nil)
         
         sut.loadRepository { statusCode, error in
@@ -47,7 +47,7 @@ class RepositoryListViewModelTests: XCTestCase {
         let sut = self.initiliseRepository(for: validServerURL)
         //When
         let exp = expectation(for: NSPredicate(block:{( _, _) -> Bool in
-            return sut.api.server.count > 0
+            return sut.repositoryList!.count > 0
         }), evaluatedWith: sut, handler: nil)
         
         sut.loadRepository { statusCode, error in
